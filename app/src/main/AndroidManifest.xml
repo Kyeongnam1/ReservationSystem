@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <!--카메라 사용 허가-->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,6 +27,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--도서관 좌석 예약-->
+        <activity android:name=".LibraryIntroActivity"/>
+        <activity android:name=".LibraryQRActivity"/>
+        <!--도서관 좌석 검색-->
+        <activity android:name=".LibrarySearchActivity"/>
+
     </application>
 
 </manifest>

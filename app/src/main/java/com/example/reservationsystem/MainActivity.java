@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.libraryButtion:
-
+                    Intent intentlib = new Intent(MainActivity.this,LibraryIntroActivity.class);
+                    startActivity(intentlib);
                     break;
             }
         }

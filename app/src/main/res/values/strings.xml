@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">ReservationSystem</string>
+
+    <string-array name="seat_location">
+        <item>전체</item>
+        <item>1층 제1노트북열람실</item>
+        <item>2층 멀티미디어룸</item>
+        <item>2층 인터넷룸</item>
+        <item>2층 A/V룸</item>
+        <item>4층 제2일반열람실</item>
+        <item>4층 대학원열람실</item>
+        <item>4층 제4일반열람실</item>
+        <item>4층 제2노트북열람실</item>
+        <item>5층 제5일반열람실A</item>
+        <item>5층 제5일반열람실B</item>
+    </string-array>
+
+    <string-array name="seat_available">
+        <item>이용 가능</item>
+        <item>이용 불가</item>
+    </string-array>
+
 </resources>

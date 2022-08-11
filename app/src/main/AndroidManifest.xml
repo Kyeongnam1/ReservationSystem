@@ -14,6 +14,7 @@
         android:theme="@style/Theme.ReservationSystem">
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".ClassRoomActivity"></activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">

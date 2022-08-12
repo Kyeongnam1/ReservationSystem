@@ -1,24 +1,43 @@
 package com.example.reservationsystem;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class ClassRoomActivity extends AppCompatActivity {
+
+    RecyclerView recyclerView;
+    Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_classroom);
 
-        findViewById(R.id.classroomButton).setOnClickListener(onClickListener);
-        findViewById(R.id.libraryButtion).setOnClickListener(onClickListener);
+        recyclerView = (RecyclerView)findViewById(R.id.recyceler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false)) ;
+        // 상하 스크롤
 
-        Intent intent = getIntent();
-        String userID = intent.getStringExtra("userID");
-        String userPassword = intent.getStringExtra("userPassword");
+        adapter = new Adapter();
+        for (int i = 0; i < 100; i++) {
+            String str = i + "번 강의실";
+            adapter.setArrayData(str);
+        }
+
+        recyclerView.setAdapter(adapter);
 
     }
 
@@ -29,20 +48,63 @@ public class ClassRoomActivity extends AppCompatActivity {
         System.exit(1);
     }
 
-    View.OnClickListener onClickListener =  new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch(v.getId()){
-                case R.id.classroomButton:
+    class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView textView;
+        public Button button;
 
-                    break;
+        ViewHolder(Context context, View itemView) {
+            super(itemView);
 
-                case R.id.libraryButtion:
-
-                    break;
-            }
+            textView = itemView.findViewById(R.id.textView);
+            button = itemView.findViewById(R.id.button);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String strText = textView.getText().toString();
+                    Toast.makeText(context, strText, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
-    };
+    }
+
+    public class Adapter extends RecyclerView.Adapter<ViewHolder> {
+        private ArrayList<String> arrayList;
+
+        public Adapter() {
+            arrayList = new ArrayList<>();
+        }
+
+        @NonNull
+        @Override
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            Context context = parent.getContext();
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.activity_classroom_list, parent, false);
+
+            ViewHolder viewholder = new ViewHolder(context, view);
+
+            return viewholder;
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+            String text = arrayList.get(position);
+            holder.textView.setText(text);
+        }
+
+        @Override
+        public int getItemCount() {
+            return arrayList.size();
+        }
+
+        // 데이터를 입력
+        public void setArrayData(String strData) {
+            arrayList.add(strData);
+        }
+
+    }
+
+
 
 
 }

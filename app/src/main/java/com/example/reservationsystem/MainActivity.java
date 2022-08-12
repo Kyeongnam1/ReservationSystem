@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch(v.getId()){
                 case R.id.classroomButton:
-
+                    startClassRoomActivity();
                     break;
 
                 case R.id.libraryButtion:
@@ -44,5 +44,10 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private void startClassRoomActivity(){
+        Intent intent = new Intent(this, ClassRoomActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 
 }

@@ -38,7 +38,6 @@ import java.util.Map;
 public class ClassRoomActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    DocumentReference mDatabase;
 
     RecyclerView recyclerView;
     Adapter adapter;
@@ -73,28 +72,39 @@ public class ClassRoomActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     String strText = textView.getText().toString();
 
-
-                    ClassRoomInfo classRoomInfo = new ClassRoomInfo("50명", "예약됨");
-
-                    db.collection("classroom").document(strText).set(classRoomInfo)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(context, "들어옴", Toast.LENGTH_SHORT).show();
+                    DocumentReference docRef = db.collection("classroom").document(strText);
+                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    if(document.getData().get("status").toString().equals("예약됨")){
+                                        Toast.makeText(context, "예약이 차있습니다.", Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        ClassRoomInfo classRoomInfo = new ClassRoomInfo("50명", "예약됨");
+                                        db.collection("classroom").document(strText).set(classRoomInfo)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                    }
+                                                });
+                                    }
                                 }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(context, "2들어옴", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-
+                            }
+                        }
+                    });
                     Toast.makeText(context, strText, Toast.LENGTH_SHORT).show();
                 }
             });
         }
     }
+
 
     public class Adapter extends RecyclerView.Adapter<ViewHolder> {
         private ArrayList<String> arrayList;

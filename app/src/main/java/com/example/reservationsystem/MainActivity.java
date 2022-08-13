@@ -1,10 +1,14 @@
 package com.example.reservationsystem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.view.MenuItem;
 import android.view.View;
 import android.os.Bundle;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,14 +16,37 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        findViewById(R.id.classroomButton).setOnClickListener(onClickListener);
-        findViewById(R.id.libraryButtion).setOnClickListener(onClickListener);
-
         Intent intent = getIntent();
         String userID = intent.getStringExtra("userID");
         String userPassword = intent.getStringExtra("userPassword");
 
+        HomeFragment homeFragment = new HomeFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, homeFragment)
+                .commit();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        HomeFragment homeFragment = new HomeFragment();
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container, homeFragment)
+                                .commit();
+                        return true;
+
+                    case R.id.myinfo:
+                        MyinfoFragment myinfoFragment = new MyinfoFragment();
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container, myinfoFragment)
+                                .commit();
+                        return true;
+
+                }
+                return false;
+            }
+        });
     }
 
     @Override public void onBackPressed() {
@@ -28,21 +55,6 @@ public class MainActivity extends AppCompatActivity {
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(1);
     }
-
-    View.OnClickListener onClickListener =  new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch(v.getId()){
-                case R.id.classroomButton:
-                    startClassRoomActivity();
-                    break;
-
-                case R.id.libraryButtion:
-
-                    break;
-            }
-        }
-    };
 
     private void startClassRoomActivity(){
         Intent intent = new Intent(this, ClassRoomActivity.class);

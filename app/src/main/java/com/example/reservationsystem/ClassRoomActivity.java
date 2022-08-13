@@ -3,6 +3,7 @@ package com.example.reservationsystem;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Response;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ClassRoomActivity extends AppCompatActivity {
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    DocumentReference mDatabase;
 
     RecyclerView recyclerView;
     Adapter adapter;
@@ -30,22 +51,12 @@ public class ClassRoomActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.recyceler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false)) ;
         // 상하 스크롤
-
         adapter = new Adapter();
-        for (int i = 0; i < 100; i++) {
-            String str = i + "번 강의실";
+        for (int i = 1; i < 6; i++) {
+            String str = "50"+ i + "호";
             adapter.setArrayData(str);
         }
-
         recyclerView.setAdapter(adapter);
-
-    }
-
-    @Override public void onBackPressed() {
-        super.onBackPressed();
-        moveTaskToBack(true);
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(1);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -56,11 +67,29 @@ public class ClassRoomActivity extends AppCompatActivity {
             super(itemView);
 
             textView = itemView.findViewById(R.id.textView);
-            button = itemView.findViewById(R.id.button);
+            button = itemView.findViewById(R.id.reservateButton);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String strText = textView.getText().toString();
+
+
+                    ClassRoomInfo classRoomInfo = new ClassRoomInfo("50명", "예약됨");
+
+                    db.collection("classroom").document(strText).set(classRoomInfo)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(context, "들어옴", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(context, "2들어옴", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
                     Toast.makeText(context, strText, Toast.LENGTH_SHORT).show();
                 }
             });

@@ -15,6 +15,7 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".ClassRoomActivity"></activity>
+        <activity android:name=".ClassRoomInfoActivity"></activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">

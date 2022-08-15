@@ -70,36 +70,38 @@ public class ClassRoomActivity extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String strText = textView.getText().toString();
+                    startActivity();
 
-                    DocumentReference docRef = db.collection("classroom").document(strText);
-                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                DocumentSnapshot document = task.getResult();
-                                if (document.exists()) {
-                                    if(document.getData().get("status").toString().equals("예약됨")){
-                                        Toast.makeText(context, "예약이 차있습니다.", Toast.LENGTH_SHORT).show();
-                                    }else{
-                                        ClassRoomInfo classRoomInfo = new ClassRoomInfo("50명", "예약됨");
-                                        db.collection("classroom").document(strText).set(classRoomInfo)
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                    }
-                                                });
-                                    }
-                                }
-                            }
-                        }
-                    });
-                    Toast.makeText(context, strText, Toast.LENGTH_SHORT).show();
+//                    String strText = textView.getText().toString();
+//
+//                    DocumentReference docRef = db.collection("classroom").document(strText);
+//                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                            if (task.isSuccessful()) {
+//                                DocumentSnapshot document = task.getResult();
+//                                if (document.exists()) {
+//                                    if(document.getData().get("status").toString().equals("예약됨")){
+//                                        Toast.makeText(context, "예약이 차있습니다.", Toast.LENGTH_SHORT).show();
+//                                    }else{
+//                                        ClassRoomInfo classRoomInfo = new ClassRoomInfo("50명", "예약됨");
+//                                        db.collection("classroom").document(strText).set(classRoomInfo)
+//                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                                    @Override
+//                                                    public void onSuccess(Void aVoid) {
+//                                                    }
+//                                                })
+//                                                .addOnFailureListener(new OnFailureListener() {
+//                                                    @Override
+//                                                    public void onFailure(@NonNull Exception e) {
+//                                                    }
+//                                                });
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    });
+                   // Toast.makeText(context, strText, Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -141,6 +143,12 @@ public class ClassRoomActivity extends AppCompatActivity {
             arrayList.add(strData);
         }
 
+    }
+
+    private  void startActivity(){
+        Intent intent=new Intent(this,ClassRoomInfoActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
 

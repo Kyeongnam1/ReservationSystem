@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment{
         library_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startLibraryIntroAcivity();
             }
         });
 
@@ -73,6 +73,11 @@ public class HomeFragment extends Fragment{
         startActivity(intent);
     }
 
+    private void startLibraryIntroAcivity(){
+        Intent intent = new Intent(this.getContext(), LibraryIntroActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 
 
 

@@ -66,4 +66,11 @@ QR 코드 : 좌석에 배치된 QR코드로 좌석을 예약할 수 있습니다
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/testbutton"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="좌석생성"/>
+
 </LinearLayout>

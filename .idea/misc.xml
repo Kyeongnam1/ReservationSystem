@@ -3,15 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidStudioProjects/ReservationSystem/app/src/main/res/layout/activity_classroom.xml" value="0.36614583333333334" />
-        <entry key="..\:/AndroidStudioProjects/ReservationSystem/app/src/main/res/layout/activity_classroom_list.xml" value="0.33" />
-        <entry key="..\:/AndroidStudioProjects/ReservationSystem/app/src/main/res/layout/activity_classroominfo.xml" value="0.2713541666666667" />
         <entry key="..\:/AndroidStudioProjects/ReservationSystem/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/ReservationSystem/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/ReservationSystem/app/src/main/res/layout/activity_register.xml" value="0.1" />
-        <entry key="..\:/AndroidStudioProjects/ReservationSystem/app/src/main/res/layout/fragment_home.xml" value="0.2713541666666667" />
-        <entry key="..\:/AndroidStudioProjects/ReservationSystem/app/src/main/res/layout/fragment_myinfo.xml" value="0.2713541666666667" />
-        <entry key="..\:/AndroidStudioProjects/ReservationSystem/app/src/main/res/menu/bottom_navigation.xml" value="0.2713541666666667" />
+        <entry key="..\:/androidStudioTest/ReservationSystem/app/src/main/res/layout/activity_libraryintro.xml" value="0.18161094224924013" />
+        <entry key="..\:/androidStudioTest/ReservationSystem/app/src/main/res/layout/activity_libraryseatcheck.xml" value="0.26313405797101447" />
+        <entry key="..\:/androidStudioTest/ReservationSystem/app/src/main/res/layout/activity_libraryseatsearch.xml" value="0.1" />
+        <entry key="..\:/androidStudioTest/ReservationSystem/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/androidStudioTest/ReservationSystem/app/src/main/res/layout/libraryseat_item.xml" value="0.25" />
       </map>
     </option>
   </component>

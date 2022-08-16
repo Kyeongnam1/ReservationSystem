@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "665578719549",
+    "project_id": "reservationsystem-4b1e9",
+    "storage_bucket": "reservationsystem-4b1e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665578719549:android:18ec5fbce476562a94dd54",
+        "android_client_info": {
+          "package_name": "com.example.reservationsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "665578719549-nt52d267h2ruq6fkfnhqe88q4lffhrtt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-TningXWwoxOetgoM-Pj66ClyRlhlEzw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "665578719549-nt52d267h2ruq6fkfnhqe88q4lffhrtt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

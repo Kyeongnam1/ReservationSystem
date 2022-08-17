@@ -19,7 +19,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
-        android:text="예약하기" />
+        android:text="예약하기"
+        android:onClick="mOnPopupClick"/>
 
 
 </RelativeLayout>

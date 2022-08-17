@@ -16,6 +16,7 @@
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".ClassRoomActivity"></activity>
         <activity android:name=".ClassRoomInfoActivity"></activity>
+        <activity android:name=".ReservationDetail" android:theme="@style/Theme.AppCompat"/>
         <activity
             android:name=".LoginActivity"
             android:exported="true">

@@ -145,10 +145,11 @@ public class ClassRoomInfoActivity extends AppCompatActivity {
 
     }
 
-    private  void startActivity(){
-        Intent intent=new Intent(this,ClassRoomInfoActivity.class);
+    private void startActivity(){
+        Intent intent=new Intent(this,ReservationDetail.class);
+        intent.putExtra("data", "예약이 완료되었습니다.");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 
 
